@@ -1,0 +1,48 @@
+<% include ./includes/head %>
+<% include ./includes/header %>
+
+<body>
+	<main class="container my-5">
+	<h1><%= title %></h1>
+	<hr>
+		<div class="row">
+			<div class="col-12">
+				<% include ./includes/msgFlash %>
+				<!--Enregistrer les données du sheets + le template en base de données-->
+				<form class="text-center" id="data" action="/data" method="POST">
+					<div class="form-group">
+						<label for="template">Cliquez sur enregistrer après avoir choisi votre template.</label>
+						<!-- Récupérer l'id grâce au name templateId -->
+						<select class="form-control" name="templateId" id="templatId" onchange="getTemplateId()">
+						<% findTemplate.forEach(element => { %>
+							<option value="<%= element._id %>"><%= element.name %></option>
+						<% }); %>
+						</select>
+					</div>
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary px-3 mb-2 font-weight-bold">Enregistrer</button>
+					</div>
+				</form>
+				<!--Générer-->
+				<form class="text-center my-5" action="/createPdf" method="POST">
+					<div class="form-group">
+						<label>Générer la feuille de présence</label>
+						<input type="hidden" id="templateIdGenerate" name="templateIdGenerate">
+					</div>
+					<button type="submit" class="btn btn-primary px-3 font-weight-bold" onclick="return confirm('Souhaitez-vous générer le pdf?');">Générer</button>
+				</form>
+			</div>
+		</div>
+	</main>
+</body>
+
+<script>
+	function getTemplateId(){
+		const element =  document.getElementById('templatId');
+		var strUser = element.options[element.selectedIndex].value;
+		let hidden = document.getElementById('templateIdGenerate');
+		hidden.value = strUser;
+	}
+</script>
+
+<% include ./includes/footer %>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ./includes/head %>
+</head>
+ <% include ./includes/header %>
+  <body>
+      <form id="createTemplate" action="/createlink" method="POST">
+        <!-- BLOCK TEMPLATE -->
+        <div class="form-group">
+          <label for="templateId">Le template</label>
+          <select name="templateId" id="templateId" class="form-control">
+            <option value="">Choisir un template</option>
+              <% findTemplate.forEach(element => { %>
+            <option value="<%= element._id %>"><%= element.name %></option>
+            <% }); %>
+          </select>
+        </div>
+          <!-- BLOCK Jour -->
+
+          <div class="from-group">
+            <input type="date" name="jour" class="form-control">
+
+          </div>
+
+          <!-- Block créneau  -->
+
+          <div class="form-group">
+            <input type="radio" name="creneau" value="matin">Matin
+            <input type="radio" name="creneau" value="aprem">Après-midi
+          </div>
+            <button type="submit" class="btn btn-primary px-3 font-weight-bold" onclick="return confirm('Souhaitez-vous générer les liens pour ce templates?');">générer</button>
+        </form>
+   
+
+<footer>
+    <% include ./includes/footer %>
+</footer>
+
+</body>
+</html>

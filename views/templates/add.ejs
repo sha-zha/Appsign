@@ -1,0 +1,35 @@
+<% include ../includes/head %> <% include ../includes/header %>
+
+<body>
+    <main class="container my-5">
+        <h1><%= title %></h1>
+        <hr>
+        <div class="row">
+            <div class="col-12">
+                <form id="createTemplate" action="/templates/create" method="POST" enctype="multipart/form-data" >
+                    <div class="form-group">
+                        <label for="name">Nom du template</label>
+                        <input required type="text" class="form-control" name="name" id="name" />
+                    </div>
+                    <div class="form-group">
+                        <label for="entitled">Intitulé</label>
+                        <input required type="entitled" class="form-control" name="entitled" id="entitled" />
+                    </div>
+                    <div class="form-group">
+                        <label for="organism">Organisme de formation</label>
+                        <input required type="organism" class="form-control" name="organism" id="organism" />
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Logo</label>
+                        <input required type="file" class="form-control" name="logo" id="logo" aria-describedby="logo" />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100 px-3 my-4 font-weight-bold" onclick="return confirm('Souhaitez-vous générer le template?');" >
+                        Créer
+                    </button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+
+<% include ../includes/footer %>

@@ -1,0 +1,40 @@
+<% include ../includes/head %>
+<% include ../includes/header %>
+
+<body>
+    <main class="container my-5">
+        <h1>Liste des templates</h1>
+        <hr>
+        <div class="row pb-5">
+            <% for (const template of templates) { %>
+            <div class="col-md-4 col-sm-12 mb-1">
+            <div class="card shadow bg-info text-white text-center mb-3">
+                <div class="row">
+                    <div class="col-4">
+                        <img class="img-fluid" src="/images/<%= template.logo %>" alt="" >
+                    </div>
+                    <div class="col-6 text-left">
+                        <div class="row">
+                            <ul class="mx-0 my-2 p-0" style="list-style-type: none;">
+                                <li> <span class="font-weight-bold">Nom:</span class="font-weight-bold"> <%= template.name %></li>
+                                <li> <span class="font-weight-bold">Intitulé:</span class="font-weight-bold"> <%= template.entitled %></li>
+                                <li> <span class="font-weight-bold">Organisme:</span class="font-weight-bold"> <%= template.organism %></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-2 d-flex justify-content-around flex-column">
+                        <a class="" href="/templates/show/<%= template._id %>"><i class="text-white fas fa-eye"></i></a>
+                        <a class="" href="/createpdf/<%= template._id %>"><i class="text-white fas fa-file-pdf"></i></a>
+                        <a class="" href="/templates/edit/<%= template._id %>"><i class="text-white fas fa-edit"></i></a>
+                        <a class="" href="/templates/delete/<%= template._id %>"><i class="text-white fas fa-trash"></i></a>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <% } %>
+        </div>
+    </main>
+</body>
+
+
+<% include ../includes/footer %>
