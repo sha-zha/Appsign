@@ -11,15 +11,15 @@ const dotenv = require('dotenv').config();
 var mongoose = require('mongoose');
 const configDB = require('./config/database.js');
 
-mongoose.connect(configDB.url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true
-}).then(() => {
-  console.log('connection established successfully')
-}).catch(); {
-};
+// mongoose.connect(configDB.url, {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+//   useFindAndModify: false,
+//   useCreateIndex: true
+// }).then(() => {
+//   console.log('connection established successfully')
+// }).catch(); {
+// };
 /***********************************/
 
 
