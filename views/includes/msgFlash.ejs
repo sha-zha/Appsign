@@ -3,8 +3,7 @@
 <% if (locals.msgFlash.length != 0) { %>
     <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
       <strong><%= locals.msgFlash %></strong>
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
+
       </button>
     </div>
     <% }%>
@@ -12,9 +11,7 @@
     <% if (locals.msgFlashError.length != 0) { %>
       <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
         <strong><%= locals.msgFlashError %></strong>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+ 
       </div>
       <% }%>
   

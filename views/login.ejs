@@ -1,44 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <% include ./includes/head %>
+    <meta charset="UTF-8">
+    <title>Appsign-connexion</title>
+
+     <link rel="stylesheet" href="stylesheets/argon.min.css" type="text/css">
+
 </head>
-
-<body class="container">
-
-  <div id="login">
-    <h1 class="text-center text-white pt-5">SIMPLON.CO</h1>
-    <div class="container">
-        <% include ./includes/msgFlash %>
-
-        <div id="login-row" class="row justify-content-center align-items-center">
-            <div id="login-column" class="col-md-6">
-                <div id="login-box" class="col-md-12">
-                    <form id="login-form" action="/signin" class="form" method="POST">
-                        <h3 class="text-center text-black">Connexion</h3>
-                        <div class="form-group">
-                            <label for="email" class="text-black">Email:</label><br>
-                            <input type="text" id="email" name="email" type="mail" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password" class="text-black">Mot de passe:</label><br>
-                            <input type="password" id="password"name="password" type="password" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="submit" name="submit" class="btn btn-info btn-ld" value="Valider">
-                            <a href="/">S'inscrire</a>
-                        </div>
-                    </form>
-                </div>
+<body class="bg-default">
+    
+    <!-- Header -->
+    <header class="header py-7 py-lg-8 pt-lg-9">
+      <div class="container">
+        <div class="header-body text-center mb-7">
+          <div class="row justify-content-center">
+            <div class="col-xl-6 col-lg-7 col-md-9 px-5">
+              <h1 class="text-white">Bienvenue sur AppSign!</h1>
+              <p class="text-lead text-white">Emarger en présentiel ou  à distance en toute simplicité.</p>
             </div>
+          </div>
         </div>
-    </div>
-</div>
+      </div>
+
+    </header>
 
 
-<footer>
-    <% include ./includes/footer %>
-</footer>
+ <main class="main-content" id="login">
+    <!-- Page content -->
+    <section class="container mt--8 pb-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-5 col-md-7">
+          <div class="card bg-secondary border-0 mb-0">
+
+            <div class="card-body px-lg-5 py-lg-5">
+
+              <form role="form" method="POST" action="/signin">
+                <!-- logo  -->
+                <div class="form-group mb-3">
+                  <div class="container text-center">
+                    <img src="images/logo.png" alt="logo de appsign" width="60">
+
+                       <% include ./includes/msgFlash %>
+                  </div>
+                  
+                </div>
+
+                <!-- input mail  -->
+                <div class="form-group mb-3">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-email-83"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Email" type="email" name="email">
+                  </div>
+                </div>
+
+                <!-- input mdp -->
+                <div class="form-group">
+                  <div class="input-group input-group-merge input-group-alternative">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
+                    </div>
+                    <input class="form-control" placeholder="Mot de passe" type="password" name="password">
+                  </div>
+                </div>
+
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary my-4"  value="se connecter" name="submit">se connecter</button>
+                </div>
+              </form>
+               <div class="row mt-3">
+
+            <div class="col-12 text-center">
+              <a href="/" class="text-default"><small>Créer un compte</small></a>
+            </div>
+          </div>
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </section>
+ 
+    </main>
+
 
 </body>
 </html>

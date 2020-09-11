@@ -31,6 +31,7 @@ controller.signPdf = async (req, res, next) =>{
 	var pdf= req.params.url
 	var row= req.params.row
 	var nbrow= req.params.nbrow
+	let day = req.params.day
 
 	// récupération du chemin par le parammetre de lien
 	const list= await PDFDocument.load(fs.readFileSync('docs/'+pdf));
@@ -41,7 +42,7 @@ controller.signPdf = async (req, res, next) =>{
 	// Add the cover to the new doc
 	const [listPage] = await doc.copyPages(list, [0]);
 	doc.addPage(listPage);
-  let img = fs.readFileSync('public/images/simplonco.png');
+  let img = fs.readFileSync('public/images/logo.png');
   img = await doc.embedPng(img);
 
 	//Selection de la page a modifier
@@ -52,19 +53,82 @@ controller.signPdf = async (req, res, next) =>{
 	//Enclenché signature en fonction de la ligne
 	for (let index = 1; index < nbrow; index++) {
 		if(row==index){
-		  for(let index=235; index<636;index+=100) {
-			firstPage.drawImage(img, {
-			  x: index,
-			  y: z,
-			  width:25,
-			  height:25,
-			});
-		  }
+
+			switch (day){
+				case '0' :
+				firstPage.drawImage(img, {
+				  x: 235,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+				case '1' :
+				firstPage.drawImage(img, {
+				  x: 335,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+				case '2' :
+
+				firstPage.drawImage(img, {
+				  x: 435,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+				case '3' :
+				firstPage.drawImage(img, {
+				  x: 535,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+				case '4' :
+				firstPage.drawImage(img, {
+				  x: 635,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+				case '5' :
+				firstPage.drawImage(img, {
+				  x: 735,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+				case '6' :
+				firstPage.drawImage(img, {
+				  x: 835,
+				  y: z,
+				  width:25,
+				  height:25,
+				});
+				break;
+
+
+			}
+
+
 		  console.log(index)
 		  console.log(z)
+		  console.log(day)
 		}
 		z-=30;
-  }
+ 	}
 
 	  // Enregistrer le pdf
 	  fs.writeFileSync('docs/'+ pdf, await doc.save());

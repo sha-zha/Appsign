@@ -55,7 +55,7 @@ router.post('/signin', usersController.signin);
  *
  */
 router.get('/dashboard', pdfController.dashboard);
-router.get('/sign/:url/:row/:nbrow', templatesController.signPdf);
+router.get('/sign/:url/:row/:nbrow/:day', templatesController.signPdf);
 
 /**
  * @request POST

@@ -2,11 +2,12 @@ const fs = require('fs');
 const readline = require('readline');
 
 const PDFDocument = require('pdfkit');
-
+const qrcode = require('qrcode');
 const axios = require('axios');
 //export des models
 const Sheets = require('../models/Sheets');
 const Template = require('../models/Template');
+const Links = require('../models/Links');
 
 
 
@@ -178,7 +179,17 @@ controller.createPdf = async (req, res, next) => { //POST: /createpdf
     for (let index = 0; index < sheet.learner.length; index++) {
       var raw= index+1;
       //correspond a la route: router.get('/sign/:url/:row/:nbrow', templatesController.signPdf);
-      url.push('/sign/'+pdfname+'/'+raw+'/'+sheet.learner.length)
+      const linksUser = '/sign/'+pdfname+'/'+raw+'/'+sheet.learner.length;
+      url.push(linksUser)
+
+      //génération qrcode
+      const generationQrcode = await qrcode.toDataURL(linksUser);
+      //ajoute le lien en bdd
+      const linksData= new Links({
+         link : linksUser,
+         qrcode: generationQrcode
+        });
+       linksData.save();
     }
     //affichage des urls dans la console de commande
     console.log(url)
@@ -251,6 +262,11 @@ controller.createPdf = async (req, res, next) => { //POST: /createpdf
   }
 }
 
+controller.sign = async (req,res,next) =>{
+
+  console.log(req.params)
+
+}
 
 //GET: /createpdf
 controller.createPdf2 = async (req, res, next) => {
@@ -270,7 +286,6 @@ controller.createPdf2 = async (req, res, next) => {
   generateHeader(pdf, template);
   textInRowFirst(pdf);
 
-  //ligne verticale milieu tableau
 
   //Création des lignes en statique
   row(pdf, 100);
