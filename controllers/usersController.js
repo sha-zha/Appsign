@@ -1,11 +1,5 @@
 const User = require('../models/User');
-const mongoose = require('mongoose');
 
-mongoose.connect("mongodb+srv://amelie:test1234@cluster0.kuvj1.azure.mongodb.net/simplonPdfGen?retryWrites=true&w=majority", 
-{useNewUrlParser: true},() =>
-
-console.log("BDD CONNECTER")
-);
 let controller = {}
 
 /**
